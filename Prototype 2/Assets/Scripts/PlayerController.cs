@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour
     public float speed = 10.0f;
 
     private float xRange = 10.0f;
+
+    // dragging a prefab into here from Unity so that computer creating instance
+    //not trying to create the object already in your scene (it would try to do this if you dragged from hierarchy)
+    public GameObject projectilePrefab;
     // Start is called before the first frame update
     void Start()
     {
