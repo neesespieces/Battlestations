@@ -15,6 +15,7 @@ public class SpawnManager : MonoBehaviour
     private float spawnInterval = 1.5f;
 
     // Start is called before the first frame update
+    // Spawns animal at certain  time intervals
     void Start()
     {
         InvokeRepeating("SpawnRandomAnimal", startDelay, spawnInterval);
@@ -27,7 +28,7 @@ public class SpawnManager : MonoBehaviour
        
     }
 
-
+    // Spawns animal randomly in a random position (within a certain range)
     void SpawnRandomAnimal() {
 
         int animalIndex = Random.Range(0, animalPrefabs.Length);

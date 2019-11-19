@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public float horizontalInput;
     public float speed = 10.0f;
 
-    private float xRange = 10.0f;
+    private float xRange = 20.0f;
 
     // dragging a prefab into here from Unity so that computer creating instance
     //not trying to create the object already in your scene (it would try to do this if you dragged from hierarchy)
