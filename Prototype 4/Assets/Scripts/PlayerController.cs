@@ -6,7 +6,9 @@ public class PlayerController : MonoBehaviour
 {
 
     private Rigidbody playerRb;
-    public float speed = 5.0f;
+    public float speed = 6.0f;
+
+    public bool hasPowerup = false;
 
     private GameObject focalPoint; 
     
@@ -24,5 +26,24 @@ public class PlayerController : MonoBehaviour
         float forwardInput = Input.GetAxis("Vertical"); 
         
         playerRb.AddForce(focalPoint.transform.forward * forwardInput * speed);
+    }
+
+    private void OnTriggerEnter(Collider other) {
+
+        if(other.CompareTag("Powerup")) {
+
+            hasPowerup = true;
+            Destroy(other.gameObject);
+        }
+
+    }
+
+
+    private void OnCollisionEnter(Collider collision) {
+
+        if(collision.gameObject.CompareTag("Enemy") && hasPowerup) {
+
+            
+        }
     }
 }
