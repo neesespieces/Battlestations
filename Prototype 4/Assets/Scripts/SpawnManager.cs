@@ -9,14 +9,24 @@ public class SpawnManager : MonoBehaviour
     public GameObject enemyPrefab; 
     void Start()
     {
-        Vector3 randomPos = GenerateSpawnPos(); 
-        Instantiate(enemyPrefab, randomPos, enemyPrefab.transform.rotation);
+        SpawnEnemyWave();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void SpawnEnemyWave() {
+        
+        for (int i = 0; i < 3; i++) {
+
+            Instantiate(enemyPrefab, GenerateSpawnPos(), enemyPrefab.transform.rotation);
+        
+        }
+
     }
 
     private Vector3 GenerateSpawnPos() {
