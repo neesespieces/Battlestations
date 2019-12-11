@@ -14,13 +14,16 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
 
     private int score; 
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
         
         StartCoroutine(SpawnTarget());
         score = 0; 
-        scoreText.text = "Score: " + score; 
+        
     }
 
     // Update is called once per frame
@@ -40,4 +43,13 @@ public class GameManager : MonoBehaviour
 
         }
     }
+
+    public void UpdateScore(int scoreToAdd) {
+
+        score += scoreToAdd; 
+        scoreText.text = "Score: " + score; 
+
+    }
+
+
 }
