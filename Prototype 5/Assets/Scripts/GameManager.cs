@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro; 
+using UnityEngine.SceneManagement; 
+using UnityEngine.UI; 
+
 
 public class GameManager : MonoBehaviour
 {
@@ -13,7 +16,15 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
 
+    public TextMeshProUGUI gameOverText; 
+
     private int score; 
+
+    public bool isGameActive; 
+
+    public Button restartButton; 
+
+    public GameObject titleScreen;
 
     
 
@@ -21,8 +32,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         
-        StartCoroutine(SpawnTarget());
-        score = 0; 
         
     }
 
@@ -35,7 +44,7 @@ public class GameManager : MonoBehaviour
     //Every second, random object is selected and created in the game
     IEnumerator SpawnTarget() {
 
-        while (true) {
+        while (isGameActive) {
             yield return new WaitForSeconds(spawnRate);
             int index = Random.Range(0, targets.Count);
             Instantiate(targets[index]);
@@ -51,5 +60,29 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void GameOver() {
+
+        restartButton.gameObject.SetActive(true); 
+        gameOverText.gameObject.SetActive(true); 
+        isGameActive = false; 
+    }
+
+    public void RestartGame() {
+        
+        //Reloading the last active scene, which you get by name
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+    }
+
+    public void StartGame() {
+
+        isGameActive = true; 
+        score = 0; 
+        
+        StartCoroutine(SpawnTarget());
+        UpdateScore(0);
+
+        titleScreen.GameObject.SetActive(false); 
+        
+    }
 
 }

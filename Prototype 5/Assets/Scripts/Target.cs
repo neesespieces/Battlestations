@@ -45,9 +45,15 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown() {
 
-        Destroy(this.gameObject);
-        Instantiate(explosionParticle, this.transform.position, explosionParticle.transform.rotation); 
-        gameManager.UpdateScore(pointValue); 
+        if(gameManager.isGameActive) {
+
+            Destroy(this.gameObject);
+            Instantiate(explosionParticle, this.transform.position, explosionParticle.transform.rotation); 
+            gameManager.UpdateScore(pointValue); 
+
+        }
+
+        
     }
 
     //When the objects pass below a certain point, they hit a box collider that's a trigger
@@ -55,6 +61,13 @@ public class Target : MonoBehaviour
     private void OnTriggerEnter (Collider other) {
 
         Destroy(this.gameObject);
+        if (!(this.gameObject.CompareTag("Bad"))) {
+
+            gameManager.GameOver(); 
+
+        }
+        
+      
 
     }
 
